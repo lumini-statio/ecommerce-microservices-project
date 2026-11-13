@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,12 +25,12 @@ public class CustomerController {
     private final CustomerService service;
 
     @PostMapping
-    public ResponseEntity<String> createCustomer(@RequestBody @Valid CustomerRequest request) {
+    public ResponseEntity<UUID> createCustomer(@RequestBody @Valid CustomerRequest request) {
         return ResponseEntity.ok(service.saveCustomer(request));
     }
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable("customerId") String customerId) {
+    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable("customerId") UUID customerId) {
         return ResponseEntity.ok(service.getCustomerById(customerId));
     }
     
@@ -45,7 +46,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/{customerId}")
-    public ResponseEntity<Void> deleteCustomerById(@PathVariable("customerId") String customerId) {
+    public ResponseEntity<Void> deleteCustomerById(@PathVariable("customerId") UUID customerId) {
         service.deleteCustomerById(customerId);
         return ResponseEntity.accepted().build();
     }

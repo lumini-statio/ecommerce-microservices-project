@@ -1,21 +1,27 @@
 services:
-  mongodb:
-    image: mongo
-    container_name: mongo_db
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo:/data/db
-    networks:
-      - microservices
-    restart: always
+  postgres:
+    image: postgres:17-alpine
+    container_name: pg17
+    restart: unless-stopped
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: ecommerce
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg17_data:/var/lib/postgresql/data
+    networks:
+      - pg_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
-  mongo:
+  pg17_data:
 
 networks:
-  microservices:
+  pg_net:
     driver: bridge

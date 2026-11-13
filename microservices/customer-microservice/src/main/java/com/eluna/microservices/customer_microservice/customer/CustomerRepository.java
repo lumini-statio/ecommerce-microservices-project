@@ -1,8 +1,13 @@
 package com.eluna.microservices.customer_microservice.customer;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+import java.util.UUID;
 
-public interface CustomerRepository extends MongoRepository<Customer, String> {
+public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
+    Optional<Customer> findByEmail(String email);
+
+    boolean existsByEmail(String email);
 }

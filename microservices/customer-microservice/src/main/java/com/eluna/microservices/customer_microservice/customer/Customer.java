@@ -1,21 +1,36 @@
 package com.eluna.microservices.customer_microservice.customer;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
+@Entity
+@Table(name = "customers")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-@Document
 public class Customer {
+
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
+
+    @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(length = 30)
     private String phone;
+
     private String address;
+
+    @Column(length = 100)
     private String city;
 }

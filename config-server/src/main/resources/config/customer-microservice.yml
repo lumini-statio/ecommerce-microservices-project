@@ -1,16 +1,22 @@
 spring:
-  mongodb:
-    host: localhost
-    port: 27017
-    database: customer_db
-    username: root
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: test
     password: test
-    authentication-database: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
 
   batch:
     job:
-      enabled: false
+      enabled: true
       name: importCustomersJob
+    jdbc:
+      initialize-schema: always
+      table-prefix: BATCH_
+      isolation-level-for-create: default
 
 server:
   port: 8091

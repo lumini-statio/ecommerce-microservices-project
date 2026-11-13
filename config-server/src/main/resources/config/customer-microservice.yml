@@ -7,5 +7,10 @@ spring:
     password: test
     authentication-database: admin
 
+  batch:
+    job:
+      enabled: false
+      name: importCustomersJob
+
 server:
   port: 8091

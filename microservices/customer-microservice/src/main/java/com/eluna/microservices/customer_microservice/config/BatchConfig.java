@@ -17,6 +17,7 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.batch.infrastructure.item.ItemReader;
 import org.springframework.batch.infrastructure.item.ItemWriter;
+import org.springframework.batch.infrastructure.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.infrastructure.item.file.FlatFileItemReader;
 import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.infrastructure.item.file.mapping.RecordFieldSetMapper;
@@ -26,10 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import java.util.List;
 
 @RequiredArgsConstructor
 @Configuration
@@ -54,8 +53,8 @@ public class BatchConfig {
     }
 
     @Bean
-    public ItemWriter<Customer> writer() {
-        return chunk -> repository.saveAll(chunk.getItems());
+    public JdbcBatchItemWriter<Customer> writer() {
+        return new JdbcBatchItemWriter<Customer>();
     }
 
     @Bean

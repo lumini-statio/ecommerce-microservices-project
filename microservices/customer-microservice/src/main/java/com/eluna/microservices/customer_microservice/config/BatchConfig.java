@@ -58,12 +58,11 @@ public class BatchConfig {
     }
 
     @Bean
-    public Step pasoImportar(JobRepository jobRepository,
-                             PlatformTransactionManager ptx,
+    public Step importStep(JobRepository jobRepository,
                              ItemReader<CustomerCsv> reader,
                              ItemProcessor<CustomerCsv,Customer> processor,
                              ItemWriter<Customer> writer) {
-        return new StepBuilder("pasoImportar", jobRepository)
+        return new StepBuilder("importStep", jobRepository)
                 .<CustomerCsv,Customer> chunk(50)
                 .reader(reader)
                 .processor(processor)
@@ -72,9 +71,9 @@ public class BatchConfig {
     }
 
     @Bean
-    public Job importCustomersJob(JobRepository jobRepository, Step pasoImportar) {
+    public Job importCustomersJob(JobRepository jobRepository, Step importStep) {
         return new JobBuilder("importCustomersJob", jobRepository)
-                .start(pasoImportar)
+                .start(importStep)
                 .build();
     }
 }

@@ -1,5 +1,9 @@
-package com.eluna.microservices.customer_microservice.customer;
+package com.eluna.microservices.customer_microservice.services;
 
+import com.eluna.microservices.customer_microservice.CustomerRepository;
+import com.eluna.microservices.customer_microservice.utils.CustomerMapper;
+import com.eluna.microservices.customer_microservice.utils.CustomerRequest;
+import com.eluna.microservices.customer_microservice.utils.CustomerResponse;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.UUID;

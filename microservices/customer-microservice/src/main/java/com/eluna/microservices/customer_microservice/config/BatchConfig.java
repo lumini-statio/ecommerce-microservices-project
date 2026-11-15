@@ -1,7 +1,7 @@
 package com.eluna.microservices.customer_microservice.config;
 
-import com.eluna.microservices.customer_microservice.customer.Customer;
-import com.eluna.microservices.customer_microservice.customer.CustomerCsv;
+import com.eluna.microservices.customer_microservice.Customer;
+import com.eluna.microservices.customer_microservice.utils.CustomerCsv;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.eluna.microservices.customer_microservice.customer;
+package com.eluna.microservices.customer_microservice;
 
 import jakarta.persistence.*;
 import lombok.*;

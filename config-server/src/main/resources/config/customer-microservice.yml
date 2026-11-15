@@ -5,13 +5,18 @@ spring:
     password: test
     driver-class-name: org.postgresql.Driver
 
+  servlet:
+    multipart:
+      file-size-threshold: 0
+      max-file-size: 20MB
+      max-request-size: 20MB
   jpa:
     hibernate:
       ddl-auto: update
 
   batch:
     job:
-      enabled: true
+      enabled: false
       name: importCustomersJob
     jdbc:
       initialize-schema: always
